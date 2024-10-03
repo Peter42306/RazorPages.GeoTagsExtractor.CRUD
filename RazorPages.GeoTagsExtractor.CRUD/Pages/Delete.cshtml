@@ -1,0 +1,39 @@
+﻿@page
+@model RazorPages.GeoTagsExtractor.CRUD.Pages.DeleteModel
+
+@{
+	ViewData["Title"] = "Delete";
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<div>
+	<h1>Image</h1>
+	<hr />
+	<dl class="row">
+		<div class="col-md-6">
+			<img src="@Url.Content(Model.FileById.Path)" alt="Model.FileById.Name" style="width:100%; height:auto" />
+		</div>
+		<div class="col-md-6">
+			<dt class="col-md-6">@Html.DisplayNameFor(model => model.FileById.Name)</dt>
+			<dd class="col-md-6">@Html.DisplayFor(model => model.FileById.Name)</dd>
+
+			<dt class="col-md-6">@Html.DisplayNameFor(model => model.FileById.Latitude)</dt>
+			<dd class="col-md-6">@Html.DisplayFor(model => model.FileById.Latitude)</dd>
+
+			<dt class="col-md-6">@Html.DisplayNameFor(model => model.FileById.Longitude)</dt>
+			<dd class="col-md-6">@Html.DisplayFor(model => model.FileById.Longitude)</dd>
+		</div>
+	</dl>
+
+	<form method="post">
+		<input type="hidden" asp-for="FileById.Id"/>
+		<input type="submit" value="Delete" class="btn btn-danger"/>
+		<a asp-page="./Index">Back to List</a>
+	</form>
+</div>
+
+	
+
+

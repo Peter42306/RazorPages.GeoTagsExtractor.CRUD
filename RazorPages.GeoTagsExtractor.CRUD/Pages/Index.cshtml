@@ -1,10 +1,41 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Geo Tags Extractor";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Geo Tags Extractor</h2>
+
+<form method="post" enctype="multipart/form-data">
+	<div class="form-group">
+		<label for="UploadedFile">Upload photo</label>
+		<input type="file" name="UploadedFile" class="form-control mt-2" />
+	</div>
+	<button type="submit" class="btn btn-primary mt-2 mb-2">Upload Photo</button>
+</form>
+
+@if (Model.FilesCollection!=null)
+{
+	<div class="row">
+		@foreach (var item in Model.FilesCollection)
+		{
+			<div class="col-md-3">
+				<!-- Отображение изображения -->
+				<img src="@item.Path" alt="@item.Name" style="width:100%; height:auto" />
+
+				<!-- Вывод информации о геолокации -->
+				<p style="margin-bottom: 1px">File Name: @item.Name</p>
+				<p style="margin-bottom: 1px">Latitude: @item.Latitude</p>
+				<p style="margin-bottom: 1px">Longitude: @item.Longitude</p>
+
+				<!-- Ссылки на детали и удаление -->				
+				<a asp-page="./Details" asp-route-id="@item.Id">Details</a><br />
+				<a asp-page="./Delete" asp-route-id="@item.Id">Delete</a><br />
+			</div>
+		}
+	</div>
+}
+else
+{
+	<p>No files uploaded yet.</p>
+}
